@@ -89,7 +89,7 @@
             z-index: 1;
         }
 
-        /* @media (max-width: 480px) {
+        @media (max-width: 480px) {
             .card {
                 padding: 48px 24px;
             }
@@ -108,7 +108,7 @@
 
             .card img.thumb {
                 width: 72px;
-            } */
+            }
         }
     </style>
 </head>
