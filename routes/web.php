@@ -13,4 +13,8 @@ Route::get('/signin', [AuthController::class, 'showSignIn'])->name('signin');
 Route::get('/', [LandingController::class, 'index'])->name('home');
 Route::get('/signup', [AuthController::class, 'showSignUp'])->name('signup');
 Route::get('/signup-success', [AuthController::class, 'signupSuccess'])->name('signup.success');
+Route::get('/forgot', [AuthController::class, 'showForgotForm'])->name('password.request');
 Route::post('/signup-submit', [AuthController::class, 'signupSubmit'])->name('signup.submit');
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');

@@ -1,216 +1,268 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Masuk | CELEP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            height: 100vh;
-            background-color: #0b0b0d;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk | CELEP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .header {
-          padding: 20px 40px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 10;
-        }
-    
-        .logo {
-          width: 40px;
-        }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0b0d;
+      color: white;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: row;
+      overflow-x: hidden;
+    }
 
-        .left {
-            flex: 1;
-            padding: 100px 100px;
-            background-color: #0b0b0d;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    .header {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      z-index: 10;
+    }
 
-        .left h1 {
-            color: #FFD700;
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+    .logo {
+      width: 40px;
+    }
 
-        .left p {
-            margin-bottom: 30px;
-            max-width: 90%;
-            font-size: 20px;
-        }
+    .left {
+      flex: 1;
+      padding: 100px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .left h1 {
+      color: #FFD700;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
 
-        label {
-            font-size: 14px;
-            margin-bottom: 5px;
-            display: block;
-            margin-left: 120px;
-        }
+    .left p {
+      margin-bottom: 30px;
+      max-width: 90%;
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
-        input[type="email"],
-        input[type="password"] {
-            text-align:center;
-            width: 80%;
-            margin-left: 120px;
-            padding: 12px;
-            border-radius: 5px;
-            border: none;
-        }
+    form {
+      width: 100%;
+      max-width: 400px;
+    }
 
-        .sign-in-btn {
-            width: 83%;
-            background-color: #FFD700;
-            padding: 12px;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-            margin-left: 120px;
-        }
+    .form-group {
+      margin-bottom: 20px;
+    }
 
-        .form-footer {
-            margin-top: 15px;
-            margin-left: 670px;
-        }
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 6px;
+    }
 
-        .form-footer a {
-            color: #FFD700;
-            font-size: 14px;
-            text-decoration: none;
-        }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
 
-        .social-login {
-            margin-top: 30px;
-            margin-left: 100px;
-        }
-        
-        .divider {
-          display: flex;
-          align-items: center;
-          text-align: center;
-          margin: 20px 0;
-        }
+    .sign-in-btn {
+      width: 100%;
+      background-color: #FFD700;
+      padding: 12px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-        .divider::before,
-        .divider::after {
-          content: '';
-          flex: 1;
-          border-bottom: 1px solid #fff;
-        }
+    .form-footer {
+      margin: 10px 0 20px;
+      text-align: right;
+    }
 
-        .divider::before {
-          margin-right: 10px;
-        }
+    .form-footer a {
+      color: #FFD700;
+      font-size: 14px;
+      text-decoration: none;
+    }
 
-        .divider::after {
-          margin-left: 10px;
-        }
+    .social-login {
+      max-width: 400px;
+      margin-top: 30px;
+      text-align: center;
+    }
 
-        .social-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            padding: 10px;
-            margin: 10px auto;
-            width: 80%;
-            border-radius: 5px;
-            color: black;
-            text-decoration: none;
-        }
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      margin: 20px 0;
+    }
 
-        .right {
-            flex: 1;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #fff;
+    }
 
-        .right img {
-            width: 80%;
-            height: 80%;
-            border-radius: 8px;
-            z-index: 1;
-        }
-        
-        .top-left {
-            position: absolute;
-            top: 8%;
-            left: 8%;
-            width: 80px;
-            height: 80px;
-            border-top: 14px solid #FFE500;
-            border-left: 14px solid #FFE500;
-            z-index: 1;
-        }
-        
-        .bottom-right {
-            position: absolute;
-            bottom: 8.5%;
-            right: 8.5%;
-            width: 85px;
-            height: 85px;
-            border-bottom: 14px solid #FFE500;
-            border-right: 14px solid #FFE500;
-            z-index: 1;
-        }
-    </style>
+    .divider::before {
+      margin-right: 10px;
+    }
+
+    .divider::after {
+      margin-left: 10px;
+    }
+
+    .social-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .social-button img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .signup-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .signup-text a {
+      color: #0099FF;
+      text-decoration: none;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .image-container {
+      position: relative;
+      width: 80%;
+    }
+
+    .image-container img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .top-left,
+    .bottom-right {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      z-index: 5;
+    }
+
+    .top-left {
+      top: -8px;
+      left: -8px;
+      border-top: 8px solid #FFE500;
+      border-left: 8px solid #FFE500;
+    }
+
+    .bottom-right {
+      bottom: -8px;
+      right: -8px;
+      border-bottom: 8px solid #FFE500;
+      border-right: 8px solid #FFE500;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .right {
+        display: none;
+      }
+
+      .left {
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .form-footer {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="header">
+    <img src="{{ asset('img/Celep1 1.png') }}" class="logo" alt="Logo">
+  </header>
 
-    <header class="header">
-        <img src="{{ asset('img/Celep1 1.png') }}" class="logo" alt="Logo">
-    </header>
+  <div class="left">
+    <h1>Welcome Back</h1>
+    <p>Hari ini adalah hari yang baru. Ini adalah harimu. Anda yang membentuknya. Masuk untuk mulai mengelola proyek Anda.</p>
 
-    <div class="left">
-        <h1>Welcome Back</h1>
-        <p>Hari ini adalah hari yang baru. Ini adalah harimu. Anda yang membentuknya. Masuk untuk mulai mengelola proyek Anda.</p>
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="at least 8 characters">
+      </div>
+      <div class="form-footer">
+        <a href="{{ route('password.request') }}">Forgot Password?</a>
+      </div>
+      <button type="submit" class="sign-in-btn">Sign in</button>
+    </form>
 
-        <form>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="example@email.com">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="at least 8 characters">
-            </div>
-
-            <div class="form-footer">
-                <a href="#">Forgot Password?</a>
-            </div>
-
-            <button type="submit" class="sign-in-btn">Sign in</button>
-        </form>
-
-        <div class="social-login">
-            <div class="divider">
-                <span>OR</span>
-            </div>
-            <a class="social-button" href="#"><img src="{{ asset('img/Google.png') }}"  style="width:20px; margin-right:10px;"> Sign in with Google</a>
-            <a class="social-button" href="#"><img src="{{ asset('img/Facebook.png') }}"  style="width:20px; margin-right:10px;"> Sign in with Facebook</a>
-        </div>
-
-        <p style="text-align:center; margin-top: 20px; margin-left: 60px;">Don't you have an account? <a style ="color:#0099FF" href="{{ url('/signup') }}">Sign up</a></p>
+    <div class="social-login">
+      <div class="divider"><span>OR</span></div>
+      <a class="social-button" href="#">
+        <img src="{{ asset('img/Google.png') }}"> Sign in with Google
+      </a>
+      <a class="social-button" href="#">
+        <img src="{{ asset('img/Facebook.png') }}"> Sign in with Facebook
+      </a>
     </div>
 
-    <div class="right">
-        <img src="{{ asset('img/puzzle1 .png') }}" alt="Puzzle">
-        <div class="top-left"></div>
-        <div class="bottom-right"></div>
+    <p class="signup-text">Don't you have an account? <a href="{{ url('/signup') }}">Sign up</a></p>
+  </div>
+
+  <div class="right">
+    <div class="image-container">
+      <img src="{{ asset('img/puzzle1 .png') }}" alt="Puzzle">
+      <div class="top-left"></div>
+      <div class="bottom-right"></div>
     </div>
+  </div>
 </body>
 </html>

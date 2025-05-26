@@ -26,4 +26,8 @@ class AuthController extends Controller
         return redirect()->route('signup.success');
     }
 
+    public function showForgotForm()
+    {
+        return view('forgot');
+    }
 }

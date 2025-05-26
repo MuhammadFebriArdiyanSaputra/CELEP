@@ -123,7 +123,7 @@
         Platform Interaktif Untuk Belajar Pemrograman C++ Dengan Mudah Dan Menyenangkan. <br />
         Mulai Perjalanan Codingmu Sekarang Dan Kuasai Bahasa Pemrogramman Yang Powerful Ini!
       </p>
-      <a href="{{ route('signin') }}" class="cta-button">Get’s Started</a>
+      <a href="{{ route('welcome') }}" class="cta-button">Get’s Started</a>
     </section>
 
     <section class="image-section">

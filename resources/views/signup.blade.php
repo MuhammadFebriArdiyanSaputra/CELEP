@@ -14,10 +14,10 @@
         }
 
         .header {
-            padding: 20px 40px;
             position: absolute;
             top: 0;
             left: 0;
+            padding: 20px 40px;
             z-index: 10;
         }
 
@@ -27,24 +27,22 @@
 
         .left {
             flex: 1;
-            padding: 100px 100px;
-            background-color: #0b0b0d;
+            padding: 100px;
             color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-left: 100px;
         }
 
         .left h1 {
-            color: #FFD700;
             font-size: 40px;
-            margin-bottom: 5px;
+            color: #FFD700;
+            margin-bottom: 10px;
         }
 
         .left p {
-            margin-bottom: 30px;
-            font-size: 25px;
+            font-size: 18px;
+            margin-bottom: 40px;
         }
 
         .left p a {
@@ -52,39 +50,43 @@
             text-decoration: none;
         }
 
+        form {
+            max-width: 400px;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
 
         label {
-            font-size: 17px;
-            margin-bottom: 5px;
             display: block;
-            margin-left: 80px;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-bottom: 5px;
         }
 
-        input[type="email"],
         input[type="text"],
+        input[type="email"],
         input[type="password"] {
-            text-align:center;
-            margin-left: 80px;
-            width: 110%;
-            padding: 20px;
-            border-radius: 5px;
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 6px;
             border: none;
             background-color: #e5e7eb;
+            font-size: 16px;
         }
 
         .sign-up-btn {
-            width: 90%;
+            width: 100%;
+            padding: 16px;
             background-color: #FFE500;
-            padding: 18px;
+            color: #000;
             font-weight: bold;
+            font-size: 16px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            margin-top: 50px;
-            margin-left: 135px;
+            margin-top: 30px;
         }
 
         .right {
@@ -93,81 +95,108 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 90px;
+            padding: 80px;
+            background-color: #0b0b0d;
         }
 
-        .right img {
+        .image-container {
+            position: relative;
+            max-width: 400px;
+            max-height: 500px; 
+        }
+
+        .image-container img {
             width: 100%;
-            height: 80%;
-            border-radius: 8px;
-            z-index: 1;
+            height: auto;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            display: block;
+        }
+
+
+        .corner-box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 6px solid #FFE500;
+            z-index: 2;
         }
 
         .top-left {
-            position: absolute;
-            top: 8.3%;
-            right: 89%;
-            width: 80px;
-            height: 80px;
-            border-top: 14px solid #FFE500;
-            border-left: 14px solid #FFE500;
-            z-index: 1;
-            /* transform: rotate(-45deg); */
+            top: -20px;
+            left: -20px;
+            border-bottom: none;
+            border-right: none;
         }
 
         .bottom-right {
-            position: absolute;
-            bottom: 8.5%;
-            left: 88%;
-            width: 85px;
-            height: 85px;
-            border-bottom: 14px solid #FFE500;
-            border-right: 14px solid #FFE500;
-            z-index: 1;
-            /* transform: rotate(-45deg); */
+            bottom: -20px;
+            right: -20px;
+            border-top: none;
+            border-left: none;
         }
+        @media screen and (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
 
-        .form-container {
-            max-width: 400px;
+            .left, .right {
+                padding: 40px;
+            }
+
+            .corner-box {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header class="header">
         <img src="{{ asset('img/Celep1 1.png') }}" class="logo" alt="Logo">
     </header>
 
+    <!-- Left Section -->
     <div class="left">
-        <div class="form-container">
-            <h1>Welcome to Artify</h1>
-            <p>Already have an account? <a href="{{ url('/signin') }}">Log in</a></p>
+        <h1>Welcome to CELEP</h1>
+        <p>Sudah punya akun? <a href="{{ route('signin') }}">Masuk</a></p>
 
-            <form action="{{ route('signup.submit') }}" method="POST">
-                 @csrf
+        <form method="POST" action="{{ route('signup') }}">
+            @csrf
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+            </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter your username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Create a password">
-                </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+            </div>
 
-                <button type="submit" class="sign-up-btn">Create an account</button>
-            </form>
+            <div class="form-group">
+                <label for="password">Kata Sandi</label>
+                <input id="password" type="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation">Konfirmasi Kata Sandi</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required>
+            </div>
+
+            <button type="submit" class="sign-up-btn">Buat Akun</button>
+        </form>
+    </div>
+
+    <!-- Right Section with Image -->
+    <div class="right">
+        <div class="image-container">
+            <img src="{{ asset('img/bird.png') }}" alt="Art">
+            <div class="corner-box top-left"></div>
+            <div class="corner-box bottom-right"></div>
         </div>
     </div>
 
-    <div class="right">
-        <img src="{{ asset('img/home bw 1.png') }}" alt="Puzzle">
-        <div class="top-left"></div>
-        <div class="bottom-right"></div>
-    </div>
 </body>
 </html>
