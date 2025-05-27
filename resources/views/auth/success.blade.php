@@ -114,7 +114,7 @@
 </head>
 <body>
 
-    <img src="{{ asset('img/Celep1 1.png') }}" alt="Logo" class="logo">
+    <img src="{{ asset('img/Celep1 1.png') }}" class="logo" alt="Logo">
 
     <div class="card">
         <img src="{{ asset('img/Jempol.png') }}" alt="Thumb" class="thumb">

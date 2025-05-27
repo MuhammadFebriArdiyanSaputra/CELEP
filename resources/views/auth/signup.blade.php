@@ -163,7 +163,14 @@
         <h1>Welcome to CELEP</h1>
         <p>Sudah punya akun? <a href="{{ route('signin') }}">Masuk</a></p>
 
-        <form method="POST" action="{{ route('signup') }}">
+        @if ($errors->any())
+        <div style="color: red; margin-bottom: 20px; margin-top: -20px;">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+        </div>
+        @endif
+        <form method="POST" action="{{ route('signup.submit') }}">
             @csrf
             <div class="form-group">
                 <label for="name">Username</label>

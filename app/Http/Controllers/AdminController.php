@@ -8,6 +8,15 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.home');;
+        return view('admin.dashboard');;
+    }
+
+    public function index()
+    {
+        return view('admin.home');
+    }
+
+    public function tentang(){
+        return view('admin.tentang');
     }
 }

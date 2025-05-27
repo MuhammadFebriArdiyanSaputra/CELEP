@@ -228,15 +228,23 @@
   <div class="left">
     <h1>Welcome Back</h1>
     <p>Hari ini adalah hari yang baru. Ini adalah harimu. Anda yang membentuknya. Masuk untuk mulai mengelola proyek Anda.</p>
-
-    <form>
+    
+     @if ($errors->any())
+      <div style="color: red; margin-bottom: 20px; margin-top: -20px;">
+              @foreach ($errors->all() as $error)
+                  {{ $error }}<br>
+              @endforeach
+      </div>
+    @endif
+    <form method="POST" action="{{ route('signin.submit') }}">
+      @csrf
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="example@email.com">
+        <input type="email" id="email" name="email" placeholder="example@email.com" required autofocus>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="at least 8 characters">
+        <input type="password" id="password" name="password" placeholder="at least 8 characters" required>
       </div>
       <div class="form-footer">
         <a href="{{ route('password.request') }}">Forgot Password?</a>
