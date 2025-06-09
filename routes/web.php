@@ -6,8 +6,12 @@ use Illuminate\Support\facades\Password;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TentangController;
-
+use App\Http\Controllers\DacsboardController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UjianAkhirController;
+use App\Models\UjianAkhir;
 
 // Auth
 Route::post('/signup-submit', [AuthController::class, 'signupSubmit'])->name('signup.submit');
@@ -31,8 +35,8 @@ Route::post('/forgot-password', function (\Illuminate\Http\Request $request) {
     );
 
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
@@ -56,8 +60,8 @@ Route::post('/reset-password', function (Request $request) {
     );
 
     return $status == Password::PASSWORD_RESET
-                ? redirect()->route('signin')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('signin')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 });
 
 
@@ -82,7 +86,10 @@ Route::middleware('auth')->group(function () {
 // Admin
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/dashboard', [DacsboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('questions', QuestionController::class);
+    Route::resource('ujian', UjianAkhirController::class);
+    Route::resource('users', UserController::class);
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
 });
 Route::get('/admin/tentang', [AdminController::class, 'tentang'])->name('admin.tentang');
