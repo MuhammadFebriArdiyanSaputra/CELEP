@@ -9,28 +9,32 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function showSignIn() {
+    public function showSignIn()
+    {
         if (Auth::check()) {
-            return redirect()->route('welcome');
+            return redirect()->route('home');
         }
         return view('auth.signin');
     }
 
-    public function showSignUp() {
+    public function showSignUp()
+    {
         if (Auth::check()) {
             return redirect()->route('welcome');
         }
         return view('auth.signup');
     }
 
-    public function signupSuccess() {
+    public function signupSuccess()
+    {
         if (Auth::check()) {
             return redirect()->route('welcome');
         }
         return view('auth.success');
     }
 
-    public function showForgotForm() {
+    public function showForgotForm()
+    {
         if (Auth::check()) {
             return redirect()->route('welcome');
         }
@@ -40,7 +44,8 @@ class AuthController extends Controller
 
     // logic
     // Register
-    public function signupSubmit(Request $request) {
+    public function signupSubmit(Request $request)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -66,10 +71,11 @@ class AuthController extends Controller
         Auth::login($user); // Automatically log in the user after registration
 
         return redirect()->route('signup.success');
-    }   
+    }
 
     // Login
-    public function signinSubmit(Request $request) {
+    public function signinSubmit(Request $request)
+    {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -77,6 +83,12 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            // Redirect berdasarkan role
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+
             return redirect()->route('welcome');
         }
 
@@ -86,7 +98,8 @@ class AuthController extends Controller
     }
 
     // Logout
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
