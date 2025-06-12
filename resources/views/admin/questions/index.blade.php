@@ -234,9 +234,12 @@
         <div class="form-group mb-0">
             <label for="materi" class="mr-2 font-weight-bold">Pilih Materi</label>
             <select id="materi" class="form-control d-inline-block w-auto">
-                <option selected>Variabels</option>
-                <option>Fungsi</option>
-                <option>Pengulangan</option>
+                <option selected>Pengenalan Dasar</option>
+                <option>Dasar Pemrograman</option>
+                <option>Struktur Data Dasar</option>
+                <option>Konsep Lanjut</option>
+                <option>Pemrograman OOP</option>
+                <option>Studi Kasus & Project</option>
                 <!-- Tambah sesuai kebutuhan -->
             </select>
         </div>

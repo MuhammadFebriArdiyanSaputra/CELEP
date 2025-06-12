@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
 
 // Materi
 foreach (range(1, 6) as $level) {
-    $max = match($level) {
+    $max = match ($level) {
         1 => 4,
         2 => 5,
         3 => 3,
@@ -64,6 +64,22 @@ foreach (range(1, 6) as $level) {
         })->name("materi{$level}.{$i}");
     }
 }
+
+Route::get('/materi/1/1', function () {
+    return view('materi.1.1');
+})->name('materi.1.1');
+Route::get('/materi/1/2', function () {
+    return view('materi.1.2');
+})->name('materi.1.2');
+Route::get('/materi/1/3', function () {
+    return view('materi.1.3');
+})->name('materi.1.3');
+Route::get('/materi/1/4', function () {
+    return view('materi.1.4');
+})->name('materi.1.4');
+Route::get('/materi/1/latihan', function () {
+    return view('materi.1.latihan');
+})->name('materi.1.latihan');
 
 
 // Admin

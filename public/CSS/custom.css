@@ -1,0 +1,303 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #000;
+    flex-wrap: wrap;
+}
+
+.logo {
+    height: 40px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left img {
+    margin-right: 10px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-btn {
+    background-color: #fdec00;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #fdec00;
+    color: black;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #1a1a1a;
+    min-width: 140px;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.dropdown-menu a,
+.dropdown-menu form button {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu form button:hover {
+    background-color: #333;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Hamburger Mobile */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .navbar-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar-right.show {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+    }
+}
+
+/* HEADER */
+.judul {
+    text-align: center;
+    color: #f1c40f;
+    margin: 20px 0;
+}
+
+/* TUJUAN */
+.box-tujuan {
+    background-color: #1c1c1c;
+    border-left: 4px solid #f1c40f;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.box-tujuan ul {
+    padding-left: 20px;
+}
+
+/* VIDEO */
+.video {
+    margin-bottom: 20px;
+}
+
+/* TABEL */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #666;
+}
+
+table thead {
+    background-color: #f1c40f;
+    color: black;
+}
+
+/* FUN FACT */
+.fun-fact {
+    background-color: #222;
+    border-left: 4px solid #f1c40f;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.code-block {
+    background-color: #1e1e1e;
+    color: #dcdcdc;
+    padding: 16px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    overflow-x: auto;
+    line-height: 1.6;
+}
+
+/* Warna untuk kata kunci */
+.code-block .keyword {
+    color: #569cd6;
+    font-weight: bold;
+}
+
+/* Warna untuk library atau preprocessor */
+.code-block .preprocessor {
+    color: #c586c0;
+}
+
+/* Warna untuk teks biasa */
+.code-block .default {
+    color: #dcdcdc;
+}
+
+/* Warna untuk komentar */
+.code-block .comment {
+    color: #6a9955;
+    font-style: italic;
+}
+
+/* Warna untuk string */
+.code-block .string {
+    color: #ce9178;
+}
+
+/* TOMBOL */
+.tombol-aksi {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.btn-kuning {
+    background-color: #f1c40f;
+    color: black;
+    padding: 10px 25px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    display: inline-block;
+}
+
+.btn-kuning:hover {
+    background-color: #d4ac0d;
+    color: white;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    color: #ccc;
+}
+
+.tools-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+.tools-section {
+    flex: 1;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #FFD700;
+}
+.ide-box-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+.ide-box {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+}
+.ide-box.hijau {
+    background-color: #90ee90;
+}
+.ide-box.kuning {
+    background-color: #f9f871;
+}
+.ide-box.emas {
+    background-color: #FFD700;
+}
+.install-guide ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+}
+.install-guide a {
+    color: #00f;
+    text-decoration: underline;
+}
+
