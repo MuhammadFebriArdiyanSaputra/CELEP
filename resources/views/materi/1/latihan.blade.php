@@ -42,23 +42,50 @@
         }
         .result {
             margin-top: 30px;
-            font-weight: bold;
+            padding: 15px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Latihan Soal: Pengenalan C++</h2>
+
+        @if(session('result'))
+            <div class="result">
+                {{ session('result') }}
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('materi.storeQuizResult', ['id' => 1]) }}">
             @csrf
             @foreach ($soal as $index => $item)
                 <div class="question">
                     <p>{{ $index + 1 }}. {{ $item->soal }}</p>
                     <div class="options">
-                        <label><input type="radio" name="jawaban[{{ $item->id }}]" value="A"> A. {{ $item->opsi_a }}</label>
-                        <label><input type="radio" name="jawaban[{{ $item->id }}]" value="B"> B. {{ $item->opsi_b }}</label>
-                        <label><input type="radio" name="jawaban[{{ $item->id }}]" value="C"> C. {{ $item->opsi_c }}</label>
-                        <label><input type="radio" name="jawaban[{{ $item->id }}]" value="D"> D. {{ $item->opsi_d }}</label>
+                        <label>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="A"
+                                {{ old("jawaban.{$item->id}") == 'A' ? 'checked' : '' }}>
+                            A. {{ $item->opsi_a }}
+                        </label>
+                        <label>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="B"
+                                {{ old("jawaban.{$item->id}") == 'B' ? 'checked' : '' }}>
+                            B. {{ $item->opsi_b }}
+                        </label>
+                        <label>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="C"
+                                {{ old("jawaban.{$item->id}") == 'C' ? 'checked' : '' }}>
+                            C. {{ $item->opsi_c }}
+                        </label>
+                        <label>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="D"
+                                {{ old("jawaban.{$item->id}") == 'D' ? 'checked' : '' }}>
+                            D. {{ $item->opsi_d }}
+                        </label>
                     </div>
                 </div>
             @endforeach

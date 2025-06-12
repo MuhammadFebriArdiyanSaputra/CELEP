@@ -73,9 +73,22 @@
                     <form action="{{ route('questions.store') }}" method="POST">
                         @csrf
 
-                        <div class="form-group">
+                        <div class="form-group mb-3">
+                            <label for="materi">Materi</label>
+                            <select name="materi" class="form-control" required>
+                                <option value="">-- Pilih Materi --</option>
+                                <option value="Pengenalan Dasar">Pengenalan Dasar</option>
+                                <option value="Dasar Pemrograman">Dasar Pemrograman</option>
+                                <option value="Struktur Data Dasar">Struktur Data Dasar</option>
+                                <option value="Konsep Lanjut">Konsep Lanjut</option>
+                                <option value="Pemrograman OOP">Pemrograman OOP</option>
+                                <option value="Studi Kasus & Project">Studi Kasus & Project</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label for="soal">Soal</label>
-                            <textarea name="soal" class="form-control" rows="4" required>{{ old('soal') }}</textarea>
+                            <textarea name="soal" rows="4" class="form-control" required>{{ old('soal') }}</textarea>
                             @error('soal')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

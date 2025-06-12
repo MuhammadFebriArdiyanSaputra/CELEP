@@ -14,10 +14,15 @@ class QuestionController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $questions = Question::latest()->paginate(5);
-        return view('admin.questions.index', compact('questions'));
+        $materiDipilih = $request->query('materi');
+
+        $questions = Question::when($materiDipilih, function ($query, $materiDipilih) {
+            return $query->where('materi', $materiDipilih);
+        })->latest()->paginate(5);
+
+        return view('admin.questions.index', compact('questions', 'materiDipilih'));
     }
 
     /**
@@ -41,6 +46,7 @@ class QuestionController extends Controller
         //validasi form
         $this->validate($request, [
             'soal' => 'required|min:5',
+            'materi' => 'required|string',
             'opsi_a' => 'required',
             'opsi_b' => 'required',
             'opsi_c' => 'required',
@@ -51,6 +57,7 @@ class QuestionController extends Controller
         //simpan ke database
         Question::create([
             'soal' => $request->soal,
+            'materi' => $request->materi,
             'opsi_a' => $request->opsi_a,
             'opsi_b' => $request->opsi_b,
             'opsi_c' => $request->opsi_c,
@@ -87,6 +94,7 @@ class QuestionController extends Controller
     {
         $this->validate($request, [
             'soal' => 'required|min:5',
+            'materi' => 'required|string',
             'opsi_a' => 'required',
             'opsi_b' => 'required',
             'opsi_c' => 'required',
@@ -98,6 +106,7 @@ class QuestionController extends Controller
 
         $question->update([
             'soal' => $request->soal,
+            'materi' => $request->materi,
             'opsi_a' => $request->opsi_a,
             'opsi_b' => $request->opsi_b,
             'opsi_c' => $request->opsi_c,

@@ -11,6 +11,7 @@ class Question extends Model
 
     protected $fillable = [
         'soal',
+        'materi',
         'opsi_a',
         'opsi_b',
         'opsi_c',

@@ -73,12 +73,17 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group">
-                            <label>Soal</label>
-                            <textarea name="soal" class="form-control" rows="4">{{ old('soal', $question->soal) }}</textarea>
-                            @error('soal')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="form-group mb-3">
+                            <label for="materi">Materi</label>
+                            <select name="materi" class="form-control" required>
+                                <option value="">-- Pilih Materi --</option>
+                                <option value="Pengenalan Dasar" {{ $question->materi == 'Pengenalan Dasar' ? 'selected' : '' }}>Pengenalan Dasar</option>
+                                <option value="Dasar Pemrograman" {{ $question->materi == 'Dasar Pemrograman' ? 'selected' : '' }}>Dasar Pemrograman</option>
+                                <option value="Struktur Data Dasar" {{ $question->materi == 'Struktur Data Dasar' ? 'selected' : '' }}>Struktur Data</option>
+                                <option value="Konsep Lanjut" {{ $question->materi == 'Konsep Lanjut' ? 'selected' : '' }}>Struktur Data</option>
+                                <option value="Pemrograman OOP" {{ $question->materi == 'Pemrograman OOP' ? 'selected' : '' }}>Struktur Data</option>
+                                <option value="Studi Kasus & Project" {{ $question->materi == 'Studi Kasus & Project' ? 'selected' : '' }}>Struktur Data</option>
+                            </select>
                         </div>
 
                         <div class="form-group row">

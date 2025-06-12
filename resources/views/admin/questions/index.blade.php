@@ -233,14 +233,14 @@
     <div class="mb-3 d-flex justify-content-between align-items-center">
         <div class="form-group mb-0">
             <label for="materi" class="mr-2 font-weight-bold">Pilih Materi</label>
-            <select id="materi" class="form-control d-inline-block w-auto">
-                <option selected>Pengenalan Dasar</option>
-                <option>Dasar Pemrograman</option>
-                <option>Struktur Data Dasar</option>
-                <option>Konsep Lanjut</option>
-                <option>Pemrograman OOP</option>
-                <option>Studi Kasus & Project</option>
-                <!-- Tambah sesuai kebutuhan -->
+            <select id="materi" class="form-control d-inline-block w-auto" onchange="window.location.href='?materi=' + this.value">
+                <option value="">-- Pilih Materi --</option>
+                <option value="Pengenalan Dasar" {{ request('materi') == 'Pengenalan Dasar' ? 'selected' : '' }}>Pengenalan Dasar</option>
+                <option value="Dasar Pemrograman" {{ request('materi') == 'Dasar Pemrograman' ? 'selected' : '' }}>Dasar Pemrograman</option>
+                <option value="Struktur Data Dasar" {{ request('materi') == 'Struktur Data Dasar' ? 'selected' : '' }}>Struktur Data Dasar</option>
+                <option value="Konsep Lanjut" {{ request('materi') == 'Konsep Lanjut' ? 'selected' : '' }}>Konsep Lanjut</option>
+                <option value="Pemrograman OOP" {{ request('materi') == 'Pemrograman OOP' ? 'selected' : '' }}>Pemrograman OOP</option>
+                <option value="Studi Kasus & Project" {{ request('materi') == 'Studi Kasus & Project' ? 'selected' : '' }}>Studi Kasus & Projec</option>
             </select>
         </div>
         <a href="{{ route('questions.create') }}" class="btn btn-warning">Tambah Soal</a>
