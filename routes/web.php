@@ -59,8 +59,9 @@ foreach (range(1, 6) as $level) {
     };
 
     for ($i = 1; $i <= $max; $i++) {
-        Route::get("/materi/{$level}.{$i}", [MateriController::class, 'show'])
-             ->name("materi{$level}.{$i}");
+        Route::get("/materi/{$level}.{$i}", function () use ($level, $i) {
+            return app(MateriController::class)->show($level, $i);
+        })->name("materi{$level}.{$i}");
     }
 }
 
