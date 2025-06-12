@@ -7,6 +7,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KuisController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\DacsboardController;
 use App\Http\Controllers\QuestionController;
@@ -31,12 +32,6 @@ Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name(
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
-Route::get('/signin', [AuthController::class, 'showSignIn'])->name('signin');
-Route::get('/signup', [AuthController::class, 'showSignUp'])->name('signup');
-Route::get('/forgot', [AuthController::class, 'showForgotForm'])->name('password.request');
-Route::get('/signup-success', [AuthController::class, 'signupSuccess'])->name('signup.success');
-
-
 Route::get('/', [LandingController::class, 'index']);
 Route::redirect('/welcome', '/home');
 Route::get('/home', function () {
@@ -46,6 +41,8 @@ Route::get('/home', function () {
 // User
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+
     Route::get('/kuis', [KuisController::class, 'index']);
 });
 

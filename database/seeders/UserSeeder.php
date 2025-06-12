@@ -18,7 +18,11 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Tana',
             'email' => 'nyrobyte@gmail.com',
-            'password' => Hash::make('admin1234'), // bcrypt
+            'password' => Hash::make('admin1234'),
+            'first_name' => 'Tana',
+            'last_name' => 'Nyrobyte',
+            'mobile_phone' => '+1234567890',
+            'birth_date' => '2000-01-01',
             'role' => 'admin',
             'isPremium' => true,
             'created_at' => now(),
@@ -27,6 +31,10 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Anta',
+            'first_name' => 'Anta',
+            'last_name' => 'Atrizki',
+            'mobile_phone' => '+1234567890',
+            'birth_date' => '2004-15-04',
             'email' => 'Atrizki.anta@gmail.com',
             'password' => Hash::make('anta1234'),
             'role' => 'user',
@@ -39,6 +47,10 @@ class UserSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => 'User ' . Str::random(5),
                 'email' => 'user' . $i . '@example.com',
+                'first_name' => 'First' . $i,
+                'last_name' => 'Last' . $i,
+                'mobile_phone' => '+123456789' . $i,
+                'birth_date' => now()->subYears($i)->format('Y-m-d'), // Example birth date
                 'password' => Hash::make('password'),
                 'role' => 'user',
                 'isPremium' => (bool)random_int(0, 1),
