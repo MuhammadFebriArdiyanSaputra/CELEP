@@ -12,6 +12,7 @@ use App\Http\Controllers\TentangController;
 use App\Http\Controllers\DacsboardController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UjianAkhirController;
+use App\Http\Controllers\MateriController;
 use App\Models\UjianAkhir;
 
 // Auth
@@ -45,6 +46,24 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/kuis', [KuisController::class, 'index']);
 });
+
+// Materi
+foreach (range(1, 6) as $level) {
+    $max = match($level) {
+        1 => 4,
+        2 => 5,
+        3 => 3,
+        4 => 4,
+        5 => 5,
+        6 => 4,
+    };
+
+    for ($i = 1; $i <= $max; $i++) {
+        Route::get("/materi/{$level}.{$i}", [MateriController::class, 'show'])
+             ->name("materi{$level}.{$i}");
+    }
+}
+
 
 // Admin
 
