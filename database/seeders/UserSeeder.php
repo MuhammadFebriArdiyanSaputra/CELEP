@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
@@ -42,15 +43,20 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
         
-        for ($i = 2; $i <= 5; $i++) {
+        $faker = Faker::create();
+        for ($i = 0; $i < 5; $i++) {
+            $firstName = $faker->firstName;
+            $lastName = $faker->lastName;
+
             DB::table('users')->insert([
-                'name' => 'User ' . Str::random(5),
-                'email' => 'user' . $i . '@example.com',
-                'first_name' => 'First' . $i,
-                'last_name' => 'Last' . $i,
-                'mobile_phone' => '+123456789' . $i,
-                'birth_date' => now()->subYears($i)->format('Y-m-d'), // Example birth date
+                'name' => $firstName . ' ' . $lastName,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $faker->unique()->safeEmail,
+                'mobile_phone' => $faker->phoneNumber,
+                'birth_date' => $faker->date('Y-m-d', '2005-01-01'),
                 'password' => Hash::make('password'),
                 'role' => 'user',
                 'isPremium' => (bool)random_int(0, 1),
