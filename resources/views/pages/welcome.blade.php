@@ -332,13 +332,6 @@
       padding: 0 24px;
     }
 
-    /* .materi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 16px;
-    } */
-
     .section-title {
       font-size: 2rem;
       font-weight: bold;
@@ -517,7 +510,7 @@
       @auth
         <a href="{{ route('welcome') }}">Home</a>
         <a href="#">Tentang</a>
-        <a href="#">Materi</a>
+        <a href="#materi-section">Materi</a> {{-- Added ID to link directly --}}
         <a href="#">Kontak</a>
         <div class="dropdown">
           <button class="dropdown-toggle" aria-label="Profile Pengguna">👤</button>
@@ -587,7 +580,9 @@
     </div>
   </section>
 
-  <section class="materi-section">
+  {{-- Materi Pembelajaran section - only visible to authenticated users --}}
+  @auth
+  <section class="materi-section" id="materi-section">
     <div class="materi-container">
       <h2 class="section-title">Materi Pembelajaran</h2>
       <p class="materi-subtitle">Pelajari C++ Mulai Dari Dasar Hingga Project Akhir.</p>
@@ -604,60 +599,59 @@
           </div>
         </div>
 
-        @auth
-          <div class="level level-2">
-            <h3>Level 2: Dasar Pemrograman</h3>
+        <div class="level level-2">
+          <h3>Level 2: Dasar Pemrograman</h3>
+          <div class="materi-row">
+            <span>Variabel & Tipe Data<br><a href="{{route('materi2.1')}}" class="btn-access">Akses Materi</a></span>
+            <span>Input & Output (Cin, Cout)<br><a href="{{route('materi2.2')}}" class="btn-access">Akses Materi</a></span>
+            <span>Operator Dasar<br><a href="{{route('materi2.3')}}" class="btn-access">Akses Materi</a></span>
+            <span>Struktur Kontrol: If, Else, Switch<br><a href="{{route('materi2.4')}}" class="btn-access">Akses Materi</a></span>
+            <span>Perulangan: For, While, Do While<br><a href="{{route('materi2.5')}}" class="btn-access">Akses Materi</a></span>
+          </div>
+        </div>
+
+        <div class="level level-3">
+          <h3>Level 3: Struktur Data Dasar</h3>
+          <div class="materi-row">
+            <span>Array 1D dan 2D<br><a href="{{route('materi3.1')}}" class="btn-access">Akses Materi</a></span>
+            <span>String dan Operasi String<br><a href="{{route('materi3.2')}}" class="btn-access">Akses Materi</a></span>
+            <span>Fungsi dan Rekursi<br><a href="{{route('materi3.3')}}" class="btn-access">Akses Materi</a></span>
+          </div>
+        </div>
+
+        @if(auth()->user()->isPremium)
+          <div class="level level-4">
+            <h3>Level 4: Konsep Lanjut</h3>
             <div class="materi-row">
-              <span>Variabel & Tipe Data<br><a href="{{route('materi2.1')}}" class="btn-access">Akses Materi</a></span>
-              <span>Input & Output (Cin, Cout)<br><a href="{{route('materi2.2')}}" class="btn-access">Akses Materi</a></span>
-              <span>Operator Dasar<br><a href="{{route('materi2.3')}}" class="btn-access">Akses Materi</a></span>
-              <span>Struktur Kontrol: If, Else, Switch<br><a href="{{route('materi2.4')}}" class="btn-access">Akses Materi</a></span>
-              <span>Perulangan: For, While, Do While<br><a href="{{route('materi2.5')}}" class="btn-access">Akses Materi</a></span>
+              <span>Pointer Dasar<br><a href="{{route('materi4.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Struct & Union<br><a href="{{route('materi4.2')}}" class="btn-access">Akses Materi</a></span>
+              <span>File Handling<br><a href="{{route('materi4.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Dynamic Memory (New/Delete)<br><a href="{{route('materi4.4')}}" class="btn-access">Akses Materi</a></span>
             </div>
           </div>
 
-          <div class="level level-3">
-            <h3>Level 3: Struktur Data Dasar</h3>
+          <div class="level level-5">
+            <h3>Level 5: Pemrograman OOP</h3>
             <div class="materi-row">
-              <span>Array 1D dan 2D<br><a href="{{route('materi3.1')}}" class="btn-access">Akses Materi</a></span>
-              <span>String dan Operasi String<br><a href="{{route('materi3.2')}}" class="btn-access">Akses Materi</a></span>
-              <span>Fungsi dan Rekursi<br><a href="{{route('materi3.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Class & Object<br><a href="{{route('materi5.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Constructor & Destructor<br><a href="{{route('materi5.2')}}" class="btn-access">Akses Materi</a></span>
+              <span>Inheritance<br><a href="{{route('materi5.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Polymorphism & Overloading<br><a href="{{route('materi5.4')}}" class="btn-access">Akses Materi</a></span>
+              <span>Encapsulation & Access Modifier<br><a href="{{route('materi5.5')}}" class="btn-access">Akses Materi</a></span>
             </div>
           </div>
 
-          @if(auth()->user()->isPremium)
-            <div class="level level-4">
-              <h3>Level 4: Konsep Lanjut</h3>
-              <div class="materi-row">
-                <span>Pointer Dasar<br><a href="{{route('materi4.1')}}" class="btn-access">Akses Materi</a></span>
-                <span>Struct & Union<br><a href="{{route('materi4.2')}}" class="btn-access">Akses Materi</a></span>
-                <span>File Handling<br><a href="{{route('materi4.3')}}" class="btn-access">Akses Materi</a></span>
-                <span>Dynamic Memory (New/Delete)<br><a href="{{route('materi4.4')}}" class="btn-access">Akses Materi</a></span>
-              </div>
+          <div class="level level-6">
+            <h3>Level 6: Studi Kasus & Project</h3>
+            <div class="materi-row">
+              <span>Mini Project 1: Sistem Kasir<br><a href="{{route('materi6.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Mini Project 2: Perpustakaan Digital<br><a href="{{route('materi6.2')}}" class="btn-access">Akses Materi</a></span>
+              <span>Evaluasi Akhir (Kuis & Tugas)<br><a href="{{route('materi6.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Praktik Langsung (Via PaizaIO)<br><a href="{{route('materi6.4')}}" class="btn-access">Akses Materi</a></span>
             </div>
+          </div>
 
-            <div class="level level-5">
-              <h3>Level 5: Pemrograman OOP</h3>
-              <div class="materi-row">
-                <span>Class & Object<br><a href="{{route('materi5.1')}}" class="btn-access">Akses Materi</a></span>
-                <span>Constructor & Destructor<br><a href="{{route('materi5.2')}}" class="btn-access">Akses Materi</a></span>
-                <span>Inheritance<br><a href="{{route('materi5.3')}}" class="btn-access">Akses Materi</a></span>
-                <span>Polymorphism & Overloading<br><a href="{{route('materi5.4')}}" class="btn-access">Akses Materi</a></span>
-                <span>Encapsulation & Access Modifier<br><a href="{{route('materi5.5')}}" class="btn-access">Akses Materi</a></span>
-              </div>
-            </div>
-
-            <div class="level level-6">
-              <h3>Level 6: Studi Kasus & Project</h3>
-              <div class="materi-row">
-                <span>Mini Project 1: Sistem Kasir<br><a href="{{route('materi6.1')}}" class="btn-access">Akses Materi</a></span>
-                <span>Mini Project 2: Perpustakaan Digital<br><a href="{{route('materi6.2')}}" class="btn-access">Akses Materi</a></span>
-                <span>Evaluasi Akhir (Kuis & Tugas)<br><a href="{{route('materi6.3')}}" class="btn-access">Akses Materi</a></span>
-                <span>Praktik Langsung (Via PaizaIO)<br><a href="{{route('materi6.4')}}" class="btn-access">Akses Materi</a></span>
-              </div>
-            </div>
-
-          @else
+        @else {{-- If user is authenticated but NOT premium --}}
           <div class="level level-4">
             <h3>Level 4: Konsep Lanjut 🔒</h3>
             <div class="materi-row">
@@ -689,60 +683,10 @@
             </div>
           </div>
         @endif
-
-        @else
-          <div class="level level-2">
-            <h3>Level 2: Dasar Pemrograman 🔒</h3>
-            <div class="materi-row">
-              <span class="locked-item">Variabel & Tipe Data<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Input & Output<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Operator Dasar<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Struktur Kontrol : If, Else, Switch<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Perulangan<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-            </div>
-          </div>
-
-          <div class="level level-3">
-            <h3>Level 3: Struktur Data 🔒</h3>
-            <div class="materi-row">
-              <span class="locked-item">Array & 2D<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">String<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Fungsi & Rekursi<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-            </div>
-          </div>
-
-          <div class="level level-4">
-            <h3>Level 4: Konsep Lanjut 🔒</h3>
-            <div class="materi-row">
-              <span class="locked-item">Pointer<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Struct & Union<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">File Handling<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Dynamic Memory<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-            </div>
-          </div>
-
-          <div class="level level-5">
-            <h3>Level 5: OOP 🔒</h3>
-            <div class="materi-row">
-              <span class="locked-item">Class & Object<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Constructor & Destructor<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Inheritance<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Polymorphism & Overloading<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-              <span class="locked-item">Encapsulation & Access Modifier<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-            </div>
-          </div>
-
-          <div class="level level-6">
-            <h3>Level 6: Studi Kasus 🔒</h3>
-            <div class="materi-row">
-              <span class="locked-item">Mini Project<br><a href="/signin" class="btn-upgrade">Login untuk Akses</a></span>
-            </div>
-          </div>
-        @endauth
-
       </div>
     </div>
   </section>
+  @endauth
 
 
   {{-- footer --}}
