@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Anta',
             'last_name' => 'Atrizki',
             'mobile_phone' => '+1234567890',
-            'birth_date' => '2004-15-04',
+            'birth_date' => '2004-04-15',
             'email' => 'Atrizki.anta@gmail.com',
             'password' => Hash::make('anta1234'),
             'role' => 'user',

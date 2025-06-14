@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->string('role')->default('user'); // Default role 'user'
-            $table->boolean('isPremium')->default(false); // Default false
+            $table->timestamp('email_verified_at')->nullable(); // Seringkali dibutuhkan untuk fitur verifikasi email
+            $table->string('password')->nullable(); 
+            $table->string('google_id')->nullable()->unique();
+            $table->string('facebook_id')->nullable()->unique(); 
+            $table->string('role')->default('user'); 
+            $table->boolean('isPremium')->default(false);
+            $table->rememberToken(); 
             $table->timestamps();
         });
     }
@@ -27,6 +31,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['google_id', 'facebook_id', 'remember_token']); // Hapus juga remember_token jika ditambahkan di up()
+        });
     }
 };
