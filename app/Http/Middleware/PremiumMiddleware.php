@@ -15,11 +15,11 @@ class PremiumMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->is_premium) {
+        if (auth()->check() && auth()->user()->isPremium) {
             return $next($request);
         }
 
-        abort(403, 'Akses khusus pengguna premium');
+        return redirect()->route('premium')->with('error', 'You must be a premium user to access this page.');
 
     }
 }

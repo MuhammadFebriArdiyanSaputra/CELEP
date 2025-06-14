@@ -331,6 +331,7 @@
       <input type="text" name="last_name" placeholder="Last Name" value="{{ old('last_name', $user->last_name) }}">
       <input type="text" name="mobile_phone" placeholder="+628123456789" value="{{ old('mobile_phone', $user->mobile_phone) }}">
       <input type="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}">
+      <input type="text" name="Premium" placeholder="Premium" value="{{ old('Premium', $user->isPremium ? 'You Are Premium!' : 'Not Premium') }}" readonly>
       <h2 class="profile-titles">Birth Date (MM-DD-YY)</h2>
       <input type="date" name="birth_date" placeholder="MM-DD-YY" value="{{ old('birth_date', $user->birth_date) }}">
 

@@ -850,11 +850,11 @@
     Telepon: +62 812-3456-7890
   </div>
 
-</body>
-<script>
+  <script>
     function toggleNavbar() {
       const navbar = document.getElementById('navbarMenu');
       navbar.classList.toggle('show');
     }
   </script>
+</body>
 </html>
