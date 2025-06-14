@@ -9,7 +9,7 @@
     * {
       box-sizing: border-box;
     }
-
+    
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -308,6 +308,87 @@
       font-size: 0.95rem;
       line-height: 1.5;
     }
+    
+    .modal {
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #3A3A3A;
+      color: white;
+      padding: 40px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .modal-content .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      color: #ffeb3b;
+      cursor: pointer;
+    }
+
+    .modal-content .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #ffeb3b;
+      margin-bottom: 30px;
+    }
+
+    .modal-content .intro p,
+    .modal-content .feature-box p {
+      color: white;
+    }
+
+    .modal-content .feature-title {
+      color: #ffeb3b;
+    }
+
+    .modal-content .content-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .modal-content .intro {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .modal-content .features {
+      flex: 3;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      min-width: 300px;
+    }
+
+    .modal-content .feature-box {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .modal-content .icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
     /* footer */
     .footer {
@@ -518,9 +599,9 @@
     <div class="navbar-right" id="navbarMenu">
       @auth
         <a href="{{ route('welcome') }}">Home</a>
-        <a href="#">Tentang</a>
+        <a href="" id="openTentang">Tentang</a>
         <a href="#materi-section">Materi</a> {{-- Added ID to link directly --}}
-        <a href="#">Kontak</a>
+        <a href="#kontak">Kontak</a>
         <div class="dropdown">
           <button class="dropdown-toggle" aria-label="Profile Pengguna">👤</button>
           <div class="dropdown-menu">
@@ -591,6 +672,40 @@
   </section>
   @endguest
 
+  @auth
+    <div id="tentangModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2 class="section-title">Tentang CELEP</h2>
+        <p>
+          CELEP adalah platform pembelajaran C++ interaktif yang dirancang untuk pemula hingga tingkat menengah.
+          Kami menyediakan materi yang mudah dipahami, latihan interaktif, dan compiler online untuk langsung mencoba kode.
+        </p>
+        <p>
+          Dengan pendekatan yang menyenangkan dan fleksibel, CELEP membantu kamu menguasai bahasa pemrograman C++ secara efektif dan efisien.
+        </p>
+
+        <div class="features">
+          <div class="feature-box">
+            <div class="icon">📱</div>
+            <h3 class="feature-title">Fleksibel</h3>
+            <p>Belajar kapan saja dan di mana saja dengan akses mudah dari semua perangkat.</p>
+          </div>
+          <div class="feature-box">
+            <div class="icon">😊</div>
+            <h3 class="feature-title">Menyenangkan</h3>
+            <p>Materi interaktif dan latihan yang membuat belajar jadi seru dan tidak membosankan.</p>
+          </div>
+          <div class="feature-box">
+            <div class="icon">💡</div>
+            <h3 class="feature-title">Mudah Dipahami</h3>
+            <p>Penjelasan yang jelas dan contoh praktis untuk membantu kamu cepat mengerti konsep.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endauth
+
   {{-- Materi Pembelajaran section - only visible to authenticated users --}}
   @auth
   <section class="materi-section" id="materi-section">
@@ -603,30 +718,30 @@
         <div class="level level-1">
           <h3>Level 1: Pengenalan Dasar</h3>
           <div class="materi-row">
-            <span>📘 Apa Itu C++?<br><a href="{{route('materi1.1')}}" class="btn-access">Akses Materi</a></span>
-            <span>Tools & Instalasi IDE<br><a href="{{route('materi1.2')}}" class="btn-access">Akses Materi</a></span>
-            <span>Struktur Program C++<br><a href="{{route('materi1.3')}}" class="btn-access">Akses Materi</a></span>
-            <span>Program Pertama: Kalkulator<br><a href="{{route('materi1.4')}}" class="btn-access">Akses Materi</a></span>
+            <span>📘 Apa Itu C++?<br><a href="{{route('materi.1.1')}}" class="btn-access">Akses Materi</a></span>
+            <span>Tools & Instalasi IDE<br><a href="{{route('materi.1.2')}}" class="btn-access">Akses Materi</a></span>
+            <span>Struktur Program C++<br><a href="{{route('materi.1.3')}}" class="btn-access">Akses Materi</a></span>
+            <span>Program Pertama: Kalkulator<br><a href="{{route('materi.1.4')}}" class="btn-access">Akses Materi</a></span>
           </div>
         </div>
 
         <div class="level level-2">
           <h3>Level 2: Dasar Pemrograman</h3>
           <div class="materi-row">
-            <span>Variabel & Tipe Data<br><a href="{{route('materi2.1')}}" class="btn-access">Akses Materi</a></span>
-            <span>Input & Output (Cin, Cout)<br><a href="{{route('materi2.2')}}" class="btn-access">Akses Materi</a></span>
-            <span>Operator Dasar<br><a href="{{route('materi2.3')}}" class="btn-access">Akses Materi</a></span>
-            <span>Struktur Kontrol: If, Else, Switch<br><a href="{{route('materi2.4')}}" class="btn-access">Akses Materi</a></span>
-            <span>Perulangan: For, While, Do While<br><a href="{{route('materi2.5')}}" class="btn-access">Akses Materi</a></span>
+            <span>Variabel & Tipe Data<br><a href="{{route('materi.2.1')}}" class="btn-access">Akses Materi</a></span>
+            <span>Input & Output (Cin, Cout)<br><a href="{{route('materi.2.2')}}" class="btn-access">Akses Materi</a></span>
+            <span>Operator Dasar<br><a href="{{route('materi.2.3')}}" class="btn-access">Akses Materi</a></span>
+            <span>Struktur Kontrol: If, Else, Switch<br><a href="{{route('materi.2.4')}}" class="btn-access">Akses Materi</a></span>
+            <span>Perulangan: For, While, Do While<br><a href="{{route('materi.2.5')}}" class="btn-access">Akses Materi</a></span>
           </div>
         </div>
 
         <div class="level level-3">
           <h3>Level 3: Struktur Data Dasar</h3>
           <div class="materi-row">
-            <span>Array 1D dan 2D<br><a href="{{route('materi3.1')}}" class="btn-access">Akses Materi</a></span>
-            <span>String dan Operasi String<br><a href="{{route('materi3.2')}}" class="btn-access">Akses Materi</a></span>
-            <span>Fungsi dan Rekursi<br><a href="{{route('materi3.3')}}" class="btn-access">Akses Materi</a></span>
+            <span>Array 1D dan 2D<br><a href="{{route('materi.3.1')}}" class="btn-access">Akses Materi</a></span>
+            <span>String dan Operasi String<br><a href="{{route('materi.3.2')}}" class="btn-access">Akses Materi</a></span>
+            <span>Fungsi dan Rekursi<br><a href="{{route('materi.3.3')}}" class="btn-access">Akses Materi</a></span>
           </div>
         </div>
 
@@ -634,31 +749,31 @@
           <div class="level level-4">
             <h3>Level 4: Konsep Lanjut</h3>
             <div class="materi-row">
-              <span>Pointer Dasar<br><a href="{{route('materi4.1')}}" class="btn-access">Akses Materi</a></span>
-              <span>Struct & Union<br><a href="{{route('materi4.2')}}" class="btn-access">Akses Materi</a></span>
-              <span>File Handling<br><a href="{{route('materi4.3')}}" class="btn-access">Akses Materi</a></span>
-              <span>Dynamic Memory (New/Delete)<br><a href="{{route('materi4.4')}}" class="btn-access">Akses Materi</a></span>
+              <span>Pointer Dasar<br><a href="{{route('materi.4.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Struct & Union<br><a href="{{route('materi.4.2')}}" class="btn-access">Akses Materi</a></span>
+              <span>File Handling<br><a href="{{route('materi.4.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Dynamic Memory (New/Delete)<br><a href="{{route('materi.4.4')}}" class="btn-access">Akses Materi</a></span>
             </div>
           </div>
 
           <div class="level level-5">
             <h3>Level 5: Pemrograman OOP</h3>
             <div class="materi-row">
-              <span>Class & Object<br><a href="{{route('materi5.1')}}" class="btn-access">Akses Materi</a></span>
-              <span>Constructor & Destructor<br><a href="{{route('materi5.2')}}" class="btn-access">Akses Materi</a></span>
-              <span>Inheritance<br><a href="{{route('materi5.3')}}" class="btn-access">Akses Materi</a></span>
-              <span>Polymorphism & Overloading<br><a href="{{route('materi5.4')}}" class="btn-access">Akses Materi</a></span>
-              <span>Encapsulation & Access Modifier<br><a href="{{route('materi5.5')}}" class="btn-access">Akses Materi</a></span>
+              <span>Class & Object<br><a href="{{route('materi.5.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Constructor & Destructor<br><a href="{{route('materi.5.2')}}" class="btn-access">Akses Materi</a></span>
+              <span>Inheritance<br><a href="{{route('materi.5.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Polymorphism & Overloading<br><a href="{{route('materi.5.4')}}" class="btn-access">Akses Materi</a></span>
+              <span>Encapsulation & Access Modifier<br><a href="{{route('materi.5.5')}}" class="btn-access">Akses Materi</a></span>
             </div>
           </div>
 
           <div class="level level-6">
             <h3>Level 6: Studi Kasus & Project</h3>
             <div class="materi-row">
-              <span>Mini Project 1: Sistem Kasir<br><a href="{{route('materi6.1')}}" class="btn-access">Akses Materi</a></span>
-              <span>Mini Project 2: Perpustakaan Digital<br><a href="{{route('materi6.2')}}" class="btn-access">Akses Materi</a></span>
-              <span>Evaluasi Akhir (Kuis & Tugas)<br><a href="{{route('materi6.3')}}" class="btn-access">Akses Materi</a></span>
-              <span>Praktik Langsung (Via PaizaIO)<br><a href="{{route('materi6.4')}}" class="btn-access">Akses Materi</a></span>
+              <span>Mini Project 1: Sistem Kasir<br><a href="{{route('materi.6.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Mini Project 2: Perpustakaan Digital<br><a href="{{route('materi.6.2')}}" class="btn-access">Akses Materi</a></span>
+              <span>Evaluasi Akhir (Kuis & Tugas)<br><a href="{{route('materi.6.3')}}" class="btn-access">Akses Materi</a></span>
+              <span>Praktik Langsung (Via PaizaIO)<br><a href="{{route('materi.6.4')}}" class="btn-access">Akses Materi</a></span>
             </div>
           </div>
 
@@ -700,8 +815,36 @@
   @endauth
 
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const openBtn = document.getElementById('openTentang');
+      const modal = document.getElementById('tentangModal');
+      const closeBtn = document.getElementById('closeModal');
+
+      if (openBtn && modal && closeBtn) {
+        openBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          modal.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', function () {
+          modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+          if (event.target === modal) {
+            modal.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+
+
+
   {{-- footer --}}
-  <div class="footer">
+  <div class="footer" id="kontak">
+    <p>&copy; 2025 CELEP. All rights reserved.</p>
     <strong>Kontak Kami</strong><br>
     Email: <a href="mailto:support@celep.com">support@celep.com</a><br>
     Telepon: +62 812-3456-7890

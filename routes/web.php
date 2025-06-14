@@ -59,111 +59,122 @@ foreach (range(1, 6) as $level) {
         6 => 4,
     };
 
+    // Tentukan middleware berdasarkan level
+    $middleware = $level <= 3 ? ['auth'] : ['auth', 'premium'];
+
+    // Route materi per sub-bab
     for ($i = 1; $i <= $max; $i++) {
         Route::get("/materi/{$level}.{$i}", function () use ($level, $i) {
             return app(MateriController::class)->show($level, $i);
-        })->name("materi{$level}.{$i}");
+        })->middleware($middleware)
+          ->name("materi.{$level}.{$i}");
     }
+
+    // Route latihan setelah semua sub-bab di level itu
+    Route::get("/materi/{$level}.latihan", function () use ($level) {
+        return app(MateriController::class)->latihan($level);
+    })->middleware($middleware)
+      ->name("materi.{$level}.latihan");
 }
 
-Route::get('/materi/1/1', function () {
-    return view('materi.1.1');
-})->name('materi.1.1');
-Route::get('/materi/1/2', function () {
-    return view('materi.1.2');
-})->name('materi.1.2');
-Route::get('/materi/1/3', function () {
-    return view('materi.1.3');
-})->name('materi.1.3');
-Route::get('/materi/1/4', function () {
-    return view('materi.1.4');
-})->name('materi.1.4');
-Route::get('/materi/1/latihan', function () {
-    return view('materi.1.latihan');
-})->name('materi.1.latihan');
+// Route::get('/materi/1/1', function () {
+//     return view('materi.1.1');
+// })->name('materi.1.1');
+// Route::get('/materi/1/2', function () {
+//     return view('materi.1.2');
+// })->name('materi.1.2');
+// Route::get('/materi/1/3', function () {
+//     return view('materi.1.3');
+// })->name('materi.1.3');
+// Route::get('/materi/1/4', function () {
+//     return view('materi.1.4');
+// })->name('materi.1.4');
+// Route::get('/materi/1/latihan', function () {
+//     return view('materi.1.latihan');
+// })->name('materi.1.latihan');
 
-Route::get('/materi/2/1', function () {
-    return view('materi.2.1');
-})->name('materi.2.1');
-Route::get('/materi/2/2', function () {
-    return view('materi.2.2');
-})->name('materi.2.2');
-Route::get('/materi/2/3', function () {
-    return view('materi.2.3');
-})->name('materi.2.3');
-Route::get('/materi/2/4', function () {
-    return view('materi.2.4');
-})->name('materi.2.4');
-Route::get('/materi/2/5', function () {
-    return view('materi.2.5');
-})->name('materi.2.5');
-Route::get('/materi/2/latihan', function () {
-    return view('materi.2.latihan');
-})->name('materi.2.latihan');
+// Route::get('/materi/2/1', function () {
+//     return view('materi.2.1');
+// })->name('materi.2.1');
+// Route::get('/materi/2/2', function () {
+//     return view('materi.2.2');
+// })->name('materi.2.2');
+// Route::get('/materi/2/3', function () {
+//     return view('materi.2.3');
+// })->name('materi.2.3');
+// Route::get('/materi/2/4', function () {
+//     return view('materi.2.4');
+// })->name('materi.2.4');
+// Route::get('/materi/2/5', function () {
+//     return view('materi.2.5');
+// })->name('materi.2.5');
+// Route::get('/materi/2/latihan', function () {
+//     return view('materi.2.latihan');
+// })->name('materi.2.latihan');
 
-Route::get('/materi/3/1', function () {
-    return view('materi.3.1');
-})->name('materi.3.1');
-Route::get('/materi/3/2', function () {
-    return view('materi.3.2');
-})->name('materi.3.2');
-Route::get('/materi/3/3', function () {
-    return view('materi.3.3');
-})->name('materi.3.3');
-Route::get('/materi/3/latihan', function () {
-    return view('materi.3.latihan');
-})->name('materi.3.latihan');
+// Route::get('/materi/3/1', function () {
+//     return view('materi.3.1');
+// })->name('materi.3.1');
+// Route::get('/materi/3/2', function () {
+//     return view('materi.3.2');
+// })->name('materi.3.2');
+// Route::get('/materi/3/3', function () {
+//     return view('materi.3.3');
+// })->name('materi.3.3');
+// Route::get('/materi/3/latihan', function () {
+//     return view('materi.3.latihan');
+// })->name('materi.3.latihan');
 
-Route::get('/materi/4/1', function () {
-    return view('materi.4.1');
-})->name('materi.4.1');
-Route::get('/materi/4/2', function () {
-    return view('materi.4.2');
-})->name('materi.4.2');
-Route::get('/materi/4/3', function () {
-    return view('materi.4.3');
-})->name('materi.4.3');
-Route::get('/materi/4/4', function () {
-    return view('materi.4.4');
-})->name('materi.4.4');
-Route::get('/materi/4/latihan', function () {
-    return view('materi.4.latihan');
-})->name('materi.4.latihan');
+// Route::get('/materi/4/1', function () {
+//     return view('materi.4.1');
+// })->name('materi.4.1');
+// Route::get('/materi/4/2', function () {
+//     return view('materi.4.2');
+// })->name('materi.4.2');
+// Route::get('/materi/4/3', function () {
+//     return view('materi.4.3');
+// })->name('materi.4.3');
+// Route::get('/materi/4/4', function () {
+//     return view('materi.4.4');
+// })->name('materi.4.4');
+// Route::get('/materi/4/latihan', function () {
+//     return view('materi.4.latihan');
+// })->name('materi.4.latihan');
 
-Route::get('/materi/5/1', function () {
-    return view('materi.5.1');
-})->name('materi.5.1');
-Route::get('/materi/5/2', function () {
-    return view('materi.5.2');
-})->name('materi.5.2');
-Route::get('/materi/5/3', function () {
-    return view('materi.5.3');
-})->name('materi.5.3');
-Route::get('/materi/5/4', function () {
-    return view('materi.5.4');
-})->name('materi.5.4');
-Route::get('/materi/5/5', function () {
-    return view('materi.5.5');
-})->name('materi.5.5');
-Route::get('/materi/5/latihan', function () {
-    return view('materi.5.latihan');
-})->name('materi.5.latihan');
+// Route::get('/materi/5/1', function () {
+//     return view('materi.5.1');
+// })->name('materi.5.1');
+// Route::get('/materi/5/2', function () {
+//     return view('materi.5.2');
+// })->name('materi.5.2');
+// Route::get('/materi/5/3', function () {
+//     return view('materi.5.3');
+// })->name('materi.5.3');
+// Route::get('/materi/5/4', function () {
+//     return view('materi.5.4');
+// })->name('materi.5.4');
+// Route::get('/materi/5/5', function () {
+//     return view('materi.5.5');
+// })->name('materi.5.5');
+// Route::get('/materi/5/latihan', function () {
+//     return view('materi.5.latihan');
+// })->name('materi.5.latihan');
 
-Route::get('/materi/6/1', function () {
-    return view('materi.6.1');
-})->name('materi.6.1');
-Route::get('/materi/6/2', function () {
-    return view('materi.6.2');
-})->name('materi.6.2');
-Route::get('/materi/6/3', function () {
-    return view('materi.6.3');
-})->name('materi.6.3');
-Route::get('/materi/6/4', function () {
-    return view('materi.6.4');
-})->name('materi.6.4');
-Route::get('/materi/6/latihan', function () {
-    return view('materi.6.latihan');
-})->name('materi.6.latihan');
+// Route::get('/materi/6/1', function () {
+//     return view('materi.6.1');
+// })->name('materi.6.1');
+// Route::get('/materi/6/2', function () {
+//     return view('materi.6.2');
+// })->name('materi.6.2');
+// Route::get('/materi/6/3', function () {
+//     return view('materi.6.3');
+// })->name('materi.6.3');
+// Route::get('/materi/6/4', function () {
+//     return view('materi.6.4');
+// })->name('materi.6.4');
+// Route::get('/materi/6/latihan', function () {
+//     return view('materi.6.latihan');
+// })->name('materi.6.latihan');
 
 // Admin
 

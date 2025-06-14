@@ -29,7 +29,7 @@ class SocialLoginController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
         } catch (\Exception $e) {
             return redirect('/signin')->withErrors(['social_login' => 'Could not authenticate with Google. Please try again.']);
         }
@@ -79,7 +79,7 @@ class SocialLoginController extends Controller
     public function handleFacebookCallback()
     {
         try {
-            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver('facebook')->stateless()->user();
         } catch (\Exception $e) {
             return redirect('/signin')->withErrors(['social_login' => 'Could not authenticate with Facebook. Please try again.']);
         }
