@@ -254,7 +254,7 @@
 
     <div class="social-login">
       <div class="divider"><span>OR</span></div>
-      <a class="social-button" href="#">
+      <a class="social-button" href="{{ route('login.google') }}">
         <img src="{{ asset('img/Google.png') }}"> Sign in with Google
       </a>
       <a class="social-button" href="#">

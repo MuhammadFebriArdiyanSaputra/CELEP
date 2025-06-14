@@ -14,6 +14,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UjianAkhirController;
 use App\Http\Controllers\MateriController;
 use App\Models\UjianAkhir;
+use App\Http\Controllers\SocialLoginController;
 
 // Auth
 Route::post('/signup-submit', [AuthController::class, 'signupSubmit'])->name('signup.submit');
@@ -122,6 +123,9 @@ Route::get('/materi/4/2', function () {
 Route::get('/materi/4/3', function () {
     return view('materi.4.3');
 })->name('materi.4.3');
+Route::get('/materi/4/4', function () {
+    return view('materi.4.4');
+})->name('materi.4.4');
 Route::get('/materi/4/latihan', function () {
     return view('materi.4.latihan');
 })->name('materi.4.latihan');
@@ -135,9 +139,31 @@ Route::get('/materi/5/2', function () {
 Route::get('/materi/5/3', function () {
     return view('materi.5.3');
 })->name('materi.5.3');
+Route::get('/materi/5/4', function () {
+    return view('materi.5.4');
+})->name('materi.5.4');
+Route::get('/materi/5/5', function () {
+    return view('materi.5.5');
+})->name('materi.5.5');
 Route::get('/materi/5/latihan', function () {
     return view('materi.5.latihan');
 })->name('materi.5.latihan');
+
+Route::get('/materi/6/1', function () {
+    return view('materi.6.1');
+})->name('materi.6.1');
+Route::get('/materi/6/2', function () {
+    return view('materi.6.2');
+})->name('materi.6.2');
+Route::get('/materi/6/3', function () {
+    return view('materi.6.3');
+})->name('materi.6.3');
+Route::get('/materi/6/4', function () {
+    return view('materi.6.4');
+})->name('materi.6.4');
+Route::get('/materi/6/latihan', function () {
+    return view('materi.6.latihan');
+})->name('materi.6.latihan');
 
 // Admin
 
@@ -149,3 +175,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
 });
 Route::get('/admin/tentang', [AdminController::class, 'tentang'])->name('admin.tentang');
+
+// Google Routes
+Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+
+// Facebook Routes
+Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);

@@ -248,6 +248,15 @@
       margin-bottom: 60px;
     }
 
+    .logged-in .container,
+    .logged-in .tentang-celep {
+        display: none;
+    }
+
+    .logged-in .materi-section {
+        padding-top: 80px; 
+    }
+
     .content-row {
       display: flex;
       flex-wrap: wrap;
@@ -531,6 +540,7 @@
     </div>
   </div>
 
+  @guest
   <div class="container">
     <div class="left">
       <h1>CELEP</h1>
@@ -579,6 +589,7 @@
       </div>
     </div>
   </section>
+  @endguest
 
   {{-- Materi Pembelajaran section - only visible to authenticated users --}}
   @auth
