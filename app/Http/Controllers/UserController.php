@@ -10,6 +10,13 @@ use App\Models\HasilUjian;
 
 class UserController extends Controller
 {
+    public function data_pengguna()
+    {
+        // Ambil semua data pengguna dari database
+        $users = User::all(); // Mengambil semua pengguna
+        return view('user.data_pengguna', compact('users'));
+    }
+
     public function profile()
     {
         $user = Auth::user();

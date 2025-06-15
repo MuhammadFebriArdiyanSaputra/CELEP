@@ -144,7 +144,7 @@
         <a href="{{ route('ujian.index') }}"
             ><i class="fas fa-clipboard-list"></i> Kelola Ujian Akhir</a
         >
-        <a href="{{ route('users.index') }}"
+        <a href="{{ route('users.data_pengguna') }}"
             ><i class="fas fa-users"></i> Data Pengguna</a
         >
     </div>

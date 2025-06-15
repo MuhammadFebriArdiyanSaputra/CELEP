@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Bayar Sekarang</h1>
-    <button id="pay-button">Bayar</button>
+    <button id="pay-button">Bayar</button>  
 
     <script type="text/javascript">
       var payButton = document.getElementById('pay-button');
