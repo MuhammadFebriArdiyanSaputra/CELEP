@@ -199,7 +199,7 @@
     <a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
     <a href="{{ route('questions.index') }}"><i class="fas fa-book"></i> Kelola Latihan</a>
     <a href="{{ route('ujian.index') }}"><i class="fas fa-clipboard-list"></i> Kelola Ujian Akhir</a>
-    <a href="{{ route('users.index') }}"><i class="fas fa-users"></i> Data Pengguna</a>
+    <a href="{{ route('users.data_pengguna') }}"><i class="fas fa-users"></i> Data Pengguna</a>
     <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </div>
 

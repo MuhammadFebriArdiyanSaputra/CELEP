@@ -144,7 +144,7 @@
     <a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
     <a href="{{ route('questions.index') }}"><i class="fas fa-book"></i> Kelola Latihan</a>
     <a href="{{ route('ujian.index') }}"><i class="fas fa-clipboard-list"></i> Kelola Ujian Akhir</a>
-    <a href="{{ route('users.index') }}"><i class="fas fa-users"></i> Data Pengguna</a>
+    <a href="{{ route('users.data_pengguna') }}"><i class="fas fa-users"></i> Data Pengguna</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
     @csrf
         <button type="submit" style="background: none; border: none; color: var(--text-yellow); padding: 10px 15px; display: block; width: 100%; text-align: left;">

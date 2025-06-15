@@ -31,7 +31,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/forgot', [AuthController::class, 'showForgotForm'])->name('password.request');
 });
 
-// Forgor Password
+// Forgot Password
 Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
@@ -104,3 +104,8 @@ Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogle
 // Facebook Routes
 Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('login.facebook');
 Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
+
+
+// Rute untuk menampilkan daftar pengguna
+Route::get('/data_pengguna', [UserController::class, 'data_pengguna'])->name('users.data_pengguna');
+
