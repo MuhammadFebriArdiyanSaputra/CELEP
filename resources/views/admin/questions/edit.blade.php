@@ -75,14 +75,14 @@
 
                         <div class="form-group mb-3">
                             <label for="materi">Materi</label>
-                            <select name="materi" class="form-control" required>
+                            <select name="level_id" id="level_id" class="form-control d-inline-block w-auto"
+                                onchange="window.location.href='?materi=' + this.value">
                                 <option value="">-- Pilih Materi --</option>
-                                <option value="Pengenalan Dasar" {{ $question->materi == 'Pengenalan Dasar' ? 'selected' : '' }}>Pengenalan Dasar</option>
-                                <option value="Dasar Pemrograman" {{ $question->materi == 'Dasar Pemrograman' ? 'selected' : '' }}>Dasar Pemrograman</option>
-                                <option value="Struktur Data Dasar" {{ $question->materi == 'Struktur Data Dasar' ? 'selected' : '' }}>Struktur Data</option>
-                                <option value="Konsep Lanjut" {{ $question->materi == 'Konsep Lanjut' ? 'selected' : '' }}>Struktur Data</option>
-                                <option value="Pemrograman OOP" {{ $question->materi == 'Pemrograman OOP' ? 'selected' : '' }}>Struktur Data</option>
-                                <option value="Studi Kasus & Project" {{ $question->materi == 'Studi Kasus & Project' ? 'selected' : '' }}>Struktur Data</option>
+                                @foreach($materiList as $materi)
+                                    <option value="{{ $materi->id }}" {{ request('materi') == $materi->id ? 'selected' : '' }}>
+                                        {{ $materi->nama_level }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 

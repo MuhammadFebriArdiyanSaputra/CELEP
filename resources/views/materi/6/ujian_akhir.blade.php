@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Soal - Pengenalan C++</title>
+    <title>Ujian Akhir - C++</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,7 +52,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Latihan Soal: {{ $namaLevel }}</h2>
+        <h2>Ujian Akhir</h2>
 
         @if(session('result'))
             <div class="result">
@@ -62,33 +62,34 @@
             <script>
                 setTimeout(function() {
                     window.location.href = "{{ route('welcome') }}";
-                }, 1000);
+                }, 2000); // redirect setelah 2 detik
             </script>
         @endif
-        <form method="POST" action="{{ route('materi.storeQuizResult', ['level' => $level]) }}">
+
+        <form method="POST" action="{{ route('materi.storeUjianAkhir') }}">
             @csrf
             @foreach ($soal as $index => $item)
                 <div class="question">
                     <p>{{ $index + 1 }}. {{ $item->soal }}</p>
                     <div class="options">
                         <label>
-                            <input type="radio" name="jawaban[{{ $item->id }}]" value="A"
-                                {{ old("jawaban.{$item->id}") == 'A' ? 'checked' : '' }}>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="a"
+                                {{ old("jawaban.{$item->id}") == 'a' ? 'checked' : '' }}>
                             A. {{ $item->opsi_a }}
                         </label>
                         <label>
-                            <input type="radio" name="jawaban[{{ $item->id }}]" value="B"
-                                {{ old("jawaban.{$item->id}") == 'B' ? 'checked' : '' }}>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="b"
+                                {{ old("jawaban.{$item->id}") == 'b' ? 'checked' : '' }}>
                             B. {{ $item->opsi_b }}
                         </label>
                         <label>
-                            <input type="radio" name="jawaban[{{ $item->id }}]" value="C"
-                                {{ old("jawaban.{$item->id}") == 'C' ? 'checked' : '' }}>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="c"
+                                {{ old("jawaban.{$item->id}") == 'c' ? 'checked' : '' }}>
                             C. {{ $item->opsi_c }}
                         </label>
                         <label>
-                            <input type="radio" name="jawaban[{{ $item->id }}]" value="D"
-                                {{ old("jawaban.{$item->id}") == 'D' ? 'checked' : '' }}>
+                            <input type="radio" name="jawaban[{{ $item->id }}]" value="d"
+                                {{ old("jawaban.{$item->id}") == 'd' ? 'checked' : '' }}>
                             D. {{ $item->opsi_d }}
                         </label>
                     </div>

@@ -175,6 +175,12 @@
 
         <div class="tombol-aksi">
             <a href="{{ route('materi.5.4') }}" class="btn-kuning">Materi Sebelumnya</a>
+
+            @if ($showLatihan)
+                <a href="{{ route('materi.5.latihan') }}" class="btn-kuning">Mulai Latihan</a>
+            @else
+                <span class="btn-kuning">📘 Selesaikan semua materi sebelum latihan</span>
+            @endif
         </div>
     </div>
 

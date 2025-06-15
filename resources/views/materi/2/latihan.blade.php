@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Soal - Dasar Pemrograman C++</title>
+    <title>Latihan Soal - Pengenalan C++</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,15 +52,20 @@
 </head>
 <body>
     <div class="container">
-        <h2>Latihan Soal: Pengenalan C++</h2>
+        <h2>Latihan Soal: {{ $namaLevel }}</h2>
 
         @if(session('result'))
             <div class="result">
                 {{ session('result') }}
             </div>
-        @endif
 
-        <form method="POST" action="{{ route('materi.storeQuizResult', ['id' => 1]) }}">
+            <script>
+                setTimeout(function() {
+                    window.location.href = "{{ route('welcome') }}";
+                }, 1000);
+            </script>
+        @endif
+        <form method="POST" action="{{ route('materi.storeQuizResult', ['level' => $level]) }}">
             @csrf
             @foreach ($soal as $index => $item)
                 <div class="question">

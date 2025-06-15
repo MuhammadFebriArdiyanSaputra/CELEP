@@ -14,6 +14,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UjianAkhirController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SertifikatController;
 use App\Models\UjianAkhir;
 use App\Http\Controllers\SocialLoginController;
 
@@ -37,10 +38,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 
 Route::get('/', [LandingController::class, 'index']);
 Route::redirect('/welcome', '/home');
-Route::get('/home', function () {
-    return view('pages.welcome');
-})->name('welcome');
-
+Route::get('/home', [MateriController::class, 'index'])->name('welcome');
 // User
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
@@ -50,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/verify', [PaymentController::class, 'verifyPayment']);
     Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
     Route::get('/kuis', [KuisController::class, 'index']);
+    Route::get('/ujian-akhir', [MateriController::class, 'showUjianAkhir'])->name('materi.ujianAkhir');
+    Route::post('/ujian-akhir/store', [MateriController::class, 'storeUjianAkhir'])->name('materi.storeUjianAkhir');
+    Route::get('/sertifikat/download', [SertifikatController::class, 'download'])->name('sertifikat.download');
 });
 
 // Materi
@@ -80,6 +81,10 @@ foreach (range(1, 6) as $level) {
     })->middleware($middleware)
       ->name("materi.{$level}.latihan");
 }
+
+Route::post('/materi/{level}/latihan', [MateriController::class, 'storeQuizResult'])
+    ->middleware($middleware)
+    ->name('materi.storeQuizResult');
 
 // Admin
 

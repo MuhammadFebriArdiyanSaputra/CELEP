@@ -4,14 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+USE App\Models\LatihanScore;
 use App\Models\User;
+use App\Models\HasilUjian;
 
 class UserController extends Controller
 {
     public function profile()
     {
         $user = Auth::user();
-        return view('pages.profile', compact('user'));
+        $riwayatSkor = LatihanScore::where('user_id', $user->id)
+                    ->orderByDesc('created_at')
+                    ->get();
+
+        $riwayatUjian = HasilUjian::where('user_id', $user->id)
+                        ->orderByDesc('created_at')
+                        ->get();
+
+        $attemptUjian = $riwayatUjian->count();
+        $nilaiUASterakhir = $riwayatUjian->first()?->nilai;
+
+        return view('pages.profile', compact(
+            'user',
+            'riwayatSkor',
+            'riwayatUjian',
+            'attemptUjian',
+            'nilaiUASterakhir'
+        ));
     }
 
     public function update(Request $request)

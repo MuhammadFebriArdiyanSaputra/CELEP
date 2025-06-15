@@ -439,10 +439,31 @@
       margin-bottom: 48px;
     }
 
-    .level h3 {
-      font-size: 1.5rem;
+    .level-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 16px;
+    }
+
+    .level-header h3 {
+      font-size: 1.5rem;
       font-weight: bold;
+      margin: 0;
+    }
+
+    .progress-indicator {
+      font-size: 0.875rem;
+      padding: 2px 10px;
+      border-radius: 8px;
+      background-color: #d1fae5;
+      color: #065f46;
+      font-weight: 500;
+    }
+
+    .progress-indicator.warning {
+      background-color: #fef3c7;
+      color: #92400e;
     }
 
     .materi-row {
@@ -716,7 +737,13 @@
       <div class="materi-grid">
 
         <div class="level level-1">
-          <h3>Level 1: Pengenalan Dasar</h3>
+          <div class="level-header">
+            <h3>Level 1: Pengenalan Dasar</h3>
+            <span class="progress-indicator {{ $progress[1]['read'] < $progress[1]['total'] ? 'warning' : '' }}">
+              {{ $progress[1]['read'] >= $progress[1]['total'] ? '✅' : '⏳' }}
+              {{ $progress[1]['read'] }}/{{ $progress[1]['total'] }}
+            </span>
+          </div>
           <div class="materi-row">
             <span>📘 Apa Itu C++?<br><a href="{{route('materi.1.1')}}" class="btn-access">Akses Materi</a></span>
             <span>Tools & Instalasi IDE<br><a href="{{route('materi.1.2')}}" class="btn-access">Akses Materi</a></span>
@@ -726,7 +753,13 @@
         </div>
 
         <div class="level level-2">
-          <h3>Level 2: Dasar Pemrograman</h3>
+          <div class="level-header">
+            <h3>Level 2: Dasar Pemrograman</h3>
+            <span class="progress-indicator {{ $progress[2]['read'] < $progress[2]['total'] ? 'warning' : '' }}">
+              {{ $progress[2]['read'] >= $progress[2]['total'] ? '✅' : '⏳' }}
+              {{ $progress[2]['read'] }}/{{ $progress[2]['total'] }}
+            </span>
+          </div>
           <div class="materi-row">
             <span>Variabel & Tipe Data<br><a href="{{route('materi.2.1')}}" class="btn-access">Akses Materi</a></span>
             <span>Input & Output (Cin, Cout)<br><a href="{{route('materi.2.2')}}" class="btn-access">Akses Materi</a></span>
@@ -737,7 +770,13 @@
         </div>
 
         <div class="level level-3">
-          <h3>Level 3: Struktur Data Dasar</h3>
+          <div class="level-header">
+            <h3>Level 3: Struktur Data Dasar</h3>
+            <span class="progress-indicator {{ $progress[3]['read'] < $progress[3]['total'] ? 'warning' : '' }}">
+              {{ $progress[3]['read'] >= $progress[3]['total'] ? '✅' : '⏳' }}
+              {{ $progress[3]['read'] }}/{{ $progress[3]['total'] }}
+            </span>
+          </div>
           <div class="materi-row">
             <span>Array 1D dan 2D<br><a href="{{route('materi.3.1')}}" class="btn-access">Akses Materi</a></span>
             <span>String dan Operasi String<br><a href="{{route('materi.3.2')}}" class="btn-access">Akses Materi</a></span>
@@ -747,7 +786,13 @@
 
         @if(auth()->user()->isPremium)
           <div class="level level-4">
-            <h3>Level 4: Konsep Lanjut</h3>
+            <div class="level-header">
+              <h3>Level 4: Konsep Lanjut</h3>
+              <span class="progress-indicator {{ $progress[4]['read'] < $progress[4]['total'] ? 'warning' : '' }}">
+                {{ $progress[4]['read'] >= $progress[4]['total'] ? '✅' : '⏳' }}
+                {{ $progress[4]['read'] }}/{{ $progress[4]['total'] }}
+              </span>
+            </div>
             <div class="materi-row">
               <span>Pointer Dasar<br><a href="{{route('materi.4.1')}}" class="btn-access">Akses Materi</a></span>
               <span>Struct & Union<br><a href="{{route('materi.4.2')}}" class="btn-access">Akses Materi</a></span>
@@ -757,7 +802,13 @@
           </div>
 
           <div class="level level-5">
-            <h3>Level 5: Pemrograman OOP</h3>
+            <div class="level-header">
+              <h3>Level 5: Pemrograman OOP</h3>
+              <span class="progress-indicator {{ $progress[5]['read'] < $progress[5]['total'] ? 'warning' : '' }}">
+                {{ $progress[5]['read'] >= $progress[5]['total'] ? '✅' : '⏳' }}
+                {{ $progress[5]['read'] }}/{{ $progress[5]['total'] }}
+              </span>
+            </div>
             <div class="materi-row">
               <span>Class & Object<br><a href="{{route('materi.5.1')}}" class="btn-access">Akses Materi</a></span>
               <span>Constructor & Destructor<br><a href="{{route('materi.5.2')}}" class="btn-access">Akses Materi</a></span>
@@ -768,12 +819,17 @@
           </div>
 
           <div class="level level-6">
-            <h3>Level 6: Studi Kasus & Project</h3>
+            <div class="level-header">
+              <h3>Level 6: Contoh Project dan Ujian Akhir</h3>
+              <span class="progress-indicator {{ $progress[6]['read'] < $progress[6]['total'] ? 'warning' : '' }}">
+                {{ $progress[6]['read'] >= $progress[6]['total'] ? '✅' : '⏳' }}
+                {{ $progress[6]['read'] }}/{{ $progress[6]['total'] }}
+              </span>
+            </div>
             <div class="materi-row">
-              <span>Mini Project 1: Sistem Kasir<br><a href="{{route('materi.6.1')}}" class="btn-access">Akses Materi</a></span>
-              <span>Mini Project 2: Perpustakaan Digital<br><a href="{{route('materi.6.2')}}" class="btn-access">Akses Materi</a></span>
-              <span>Evaluasi Akhir (Kuis & Tugas)<br><a href="{{route('materi.6.3')}}" class="btn-access">Akses Materi</a></span>
-              <span>Praktik Langsung (Via PaizaIO)<br><a href="{{route('materi.6.4')}}" class="btn-access">Akses Materi</a></span>
+              <span>Contoh Project Sistem Kasir<br><a href="{{route('materi.6.1')}}" class="btn-access">Akses Materi</a></span>
+              <span>Latihan<br><a href="{{route('materi.6.latihan')}}" class="btn-access">Akses Materi</a></span>
+              <span>Ujian Akhir<br><a href="{{route('materi.ujianAkhir')}}" class="btn-access">Mulai Sekarang</a></span>
             </div>
           </div>
 
@@ -782,9 +838,6 @@
             <h3>Level 4: Konsep Lanjut 🔒</h3>
             <div class="materi-row">
               <span class="locked-item">Pointer Dasar<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Struct & Union<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">File Handling<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Dynamic Memory<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
             </div>
           </div>
 
@@ -792,20 +845,13 @@
             <h3>Level 5: Pemrograman OOP 🔒</h3>
             <div class="materi-row">
               <span class="locked-item">Class & Object<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Constructor & Destructor<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Inheritance<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Polymorphism & Overloading<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Encapsulation & Access Modifier<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
             </div>
           </div>
 
           <div class="level level-6">
-            <h3>Level 6: Studi Kasus & Project 🔒</h3>
+            <h3>Level 6: Contoh!</h3>
             <div class="materi-row">
-              <span class="locked-item">Mini Project 1<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Mini Project 2<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Evaluasi Akhir<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
-              <span class="locked-item">Praktik Langsung<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
+              <span class="locked-item">Contoh<br><a href="/premium" class="btn-upgrade">Bayar untuk Akses</a></span>
             </div>
           </div>
         @endif

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\UjianAkhir;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Level;
+use App\Models\LatihanScore;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UjianAkhirController extends Controller
 {

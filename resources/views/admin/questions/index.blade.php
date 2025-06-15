@@ -221,7 +221,13 @@
     <a href="{{ route('questions.index') }}"><i class="fas fa-book"></i> Kelola Latihan</a>
     <a href="{{ route('ujian.index') }}"><i class="fas fa-clipboard-list"></i> Kelola Ujian Akhir</a>
     <a href="{{ route('users.index') }}"><i class="fas fa-users"></i> Data Pengguna</a>
-    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <form method="POST" action="{{ route('logout') }}" style="margin-top: 10px;">
+        @csrf
+        <button type="submit">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </form>
+
 </div>
 
 <div class="content">
@@ -233,14 +239,14 @@
     <div class="mb-3 d-flex justify-content-between align-items-center">
         <div class="form-group mb-0">
             <label for="materi" class="mr-2 font-weight-bold">Pilih Materi</label>
-            <select id="materi" class="form-control d-inline-block w-auto" onchange="window.location.href='?materi=' + this.value">
+            <select name="level_id" id="level_id" class="form-control d-inline-block w-auto"
+                onchange="window.location.href='?materi=' + this.value">
                 <option value="">-- Pilih Materi --</option>
-                <option value="Pengenalan Dasar" {{ request('materi') == 'Pengenalan Dasar' ? 'selected' : '' }}>Pengenalan Dasar</option>
-                <option value="Dasar Pemrograman" {{ request('materi') == 'Dasar Pemrograman' ? 'selected' : '' }}>Dasar Pemrograman</option>
-                <option value="Struktur Data Dasar" {{ request('materi') == 'Struktur Data Dasar' ? 'selected' : '' }}>Struktur Data Dasar</option>
-                <option value="Konsep Lanjut" {{ request('materi') == 'Konsep Lanjut' ? 'selected' : '' }}>Konsep Lanjut</option>
-                <option value="Pemrograman OOP" {{ request('materi') == 'Pemrograman OOP' ? 'selected' : '' }}>Pemrograman OOP</option>
-                <option value="Studi Kasus & Project" {{ request('materi') == 'Studi Kasus & Project' ? 'selected' : '' }}>Studi Kasus & Projec</option>
+                @foreach($materiList as $materi)
+                    <option value="{{ $materi->id }}" {{ request('materi') == $materi->id ? 'selected' : '' }}>
+                        {{ $materi->nama_level }}
+                    </option>
+                @endforeach
             </select>
         </div>
         <a href="{{ route('questions.create') }}" class="btn btn-warning">Tambah Soal</a>

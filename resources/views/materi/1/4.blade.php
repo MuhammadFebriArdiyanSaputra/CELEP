@@ -118,9 +118,15 @@ int main()
         </section>
 
         <div class="tombol-aksi">
-            <a href="{{ route('welcome') }}" class="btn-kuning">Kembali</a>
-            <a href="{{ route('materi.1.latihan') }}" class="btn-kuning">Materi Selanjutnya</a>
+            <a href="{{ route('materi.1.3') }}" class="btn-kuning">Materi Sebelumnya</a>
+
+            @if ($showLatihan)
+                <a href="{{ route('materi.1.latihan') }}" class="btn-kuning">Mulai Latihan</a>
+            @else
+                <span class="btn-kuning">📘 Selesaikan semua materi sebelum latihan</span>
+            @endif
         </div>
+
     </div>
 
     <!-- FOOTER -->

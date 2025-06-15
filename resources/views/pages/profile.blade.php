@@ -280,6 +280,52 @@
     .submit-btn:hover {
       background-color: #e5d100;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #0b1a35;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 12px;
+      color: white;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content h2 {
+      color: #fdec00;
+      margin-bottom: 20px;
+    }
+
+    .close {
+      color: white;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
   </style>
 </head>
 
@@ -298,9 +344,8 @@
     <div class="navbar-right" id="navbarMenu">
       @auth
         <a href="{{ route('welcome') }}">Home</a>
-        <a href="#">Tentang</a>
-        <a href="#">Materi</a>
-        <a href="#">Kontak</a>
+        <a href="{{route('welcome')}}">Materi</a>
+        <a href="Riwayat"></a>
         <div class="dropdown">
           <button class="dropdown-toggle">👤</button>
           <div class="dropdown-menu">
@@ -337,7 +382,65 @@
 
       <button type="submit" class="submit-btn">CHANGE PROFILE</button>
     </form>
+    <button onclick="openModal()" class="submit-btn" style="margin-top: 30px;">
+        RIWAYAT LATIHAN
+    </button>
   </div>
+
+  <!-- Modal Riwayat -->
+  <div id="modalRiwayat" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      
+      <h2>Riwayat Skor Latihan</h2>
+
+      @if ($riwayatSkor->isEmpty())
+        <p>Kamu belum mengikuti latihan apapun.</p>
+      @else
+        <ul style="list-style: none; padding-left: 0; margin-top: 20px;">
+          @foreach ($riwayatSkor as $skor)
+            <li style="background: #1c2a4a; padding: 15px 20px; margin-bottom: 10px; border-radius: 8px; color: #f1f1f1;">
+              <strong>Level {{ $skor->level }}</strong> – 
+              {{ $skor->jumlah_benar }} benar dari {{ $skor->jumlah_soal }} soal 
+              (<span style="color: #fdec00; font-weight: bold;">{{ $skor->skor }}%</span>)<br>
+              <small>{{ \Carbon\Carbon::parse($skor->created_at)->format('d M Y, H:i') }}</small>
+            </li>
+          @endforeach
+        </ul>
+      @endif
+
+      <hr style="margin: 30px 0; border-color: #444;">
+
+      <div class="profile-container" style="margin-top: 40px; background-color: #0b1a35;">
+      <h2 class="profile-title">Ujian Akhir</h2>
+
+      <p class="profile-titles"><strong>Jumlah Attempt:</strong> {{ $attemptUjian }}</p>
+
+      @if ($attemptUjian > 0)
+        <p class="profile-titles">
+          <strong>Nilai Terakhir:</strong>
+          <span style="color: {{ $nilaiUASterakhir >= 80 ? '#00ff7f' : '#fdec00' }}; font-weight: bold;">
+            {{ $nilaiUASterakhir }}
+          </span>
+        </p>
+
+        @if ($nilaiUASterakhir >= 80)
+          <div style="background: #1c2a4a; padding: 20px; border: 2px dashed #00ff7f; border-radius: 10px; color: white; margin-top: 20px;">
+            🎉 Selamat! Kamu berhak mendapatkan <strong>Sertifikat Penyelesaian</strong>.
+            <br>
+            <a href="{{ route('sertifikat.download') }}" class="submit-btn" style="margin-top: 15px; display: inline-block;">Download Sertifikat</a>
+          </div>
+        @endif
+
+      @else
+        <p style="color: #ccc;">Kamu belum mengerjakan ujian akhir.</p>
+      @endif
+    </div>
+
+      
+    </div>
+  </div>
+
 
   <script>
     function toggleNavbar() {
@@ -345,6 +448,24 @@
       menu.classList.toggle("show");
     }
   </script>
+
+  <script>
+    function openModal() {
+      document.getElementById("modalRiwayat").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("modalRiwayat").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("modalRiwayat");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+
 
 </body>
 </html>

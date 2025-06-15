@@ -11,11 +11,16 @@ class Question extends Model
 
     protected $fillable = [
         'soal',
-        'materi',
+        'level_id',
         'opsi_a',
         'opsi_b',
         'opsi_c',
         'opsi_d',
         'jawaban_benar',
     ];
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'materi');
+    }
 }
